@@ -1,0 +1,51 @@
+{
+  "name": "wunluv/wpdocksite",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress multi-tenant site boilerplate",
+  "homepage": "https://github.com/wunluv/wpdocksite",
+  "authors": [
+    {
+      "name": "San Than",
+      "email": "mojahkhanyi@gmail.com",
+      "homepage": "https://github.com/wunluv"
+    },
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "type": "vcs",
+	  "url": "https://github.com/wunluv/simplicity"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "composer/installers": "^1.4",
+    "vlucas/phpdotenv": "^3.0.0",
+    "oscarotero/env": "^1.1.0",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.0.0"
+  },
+   "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0.2",
+    "roave/security-advisories": "dev-master"
+  },
+   "extra": {
+    "installer-paths": {
+      "htdocs/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "htdocs/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "htdocs/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+    "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('conf/.env.example', 'conf/.env');\"",
+      "php -r \"symlink('../../wp', 'htdocs/wp');\"",
+    ],
+    "test": [
+      "phpcs"
+    ]
+  }
+}
