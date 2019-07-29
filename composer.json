@@ -2,21 +2,21 @@
   "name": "wunluv/wpdocksite",
   "type": "project",
   "license": "MIT",
-  "description": "WordPress multi-tenant site boilerplate",
+  "description": "Adds a tenant to WordPress multi-tenant shared core",
   "homepage": "https://github.com/wunluv/wpdocksite",
   "authors": [
     {
       "name": "San Than",
       "email": "mojahkhanyi@gmail.com",
       "homepage": "https://github.com/wunluv"
-    },
+    }
   ],
   "repositories": [
     {
       "type": "composer",
       "url": "https://wpackagist.org",
       "type": "vcs",
-	  "url": "https://github.com/wunluv/simplicity"
+	  "url": "https://github.com/wunluv/wpdocksite"
     }
   ],
   "require": {
@@ -29,7 +29,11 @@
   },
    "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
-    "roave/security-advisories": "dev-master"
+    "roave/security-advisories": "dev-master",
+    "wpackagist-plugin/ari-adminer":"^1.11.2",
+    "wpackagist-plugin/regenerate-thumbnails":"^3.1.1",
+    "wpackagist-plugin/show-current-template":"^0.3.0",
+    "wpackagist-plugin/disable-emails":"^1.4.0"
   },
    "extra": {
     "installer-paths": {
@@ -37,15 +41,12 @@
       "htdocs/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "htdocs/app/themes/{$name}/": ["type:wordpress-theme"]
     },
-    "wordpress-install-dir": "web/wp"
+    "wordpress-install-dir": "htdocs/wp"
   },
     "scripts": {
     "post-root-package-install": [
-      "php -r \"copy('conf/.env.example', 'conf/.env');\"",
-      "php -r \"symlink('../../wp', 'htdocs/wp');\"",
+      "php -r \"copy('.env.example', '.env');\"",
+      "php -r \"symlink('/home/wunluv/DEV/dboxprojects/wp', 'htdocs/wp');\"",
     ],
-    "test": [
-      "phpcs"
-    ]
   }
 }
